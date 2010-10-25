@@ -1,4 +1,10 @@
 FestivalApp::Application.routes.draw do
+  resources :bands
+
+  resources :stages
+
+  resources :festivals
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Festival:</b>
+  <%= @stage.festival_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @stage.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @stage.description %>
+</p>
+
+<p>
+  <b>Image:</b>
+  <%= @stage.image %>
+</p>
+
+<p>
+  <b>Longitude:</b>
+  <%= @stage.longitude %>
+</p>
+
+<p>
+  <b>Latitude:</b>
+  <%= @stage.latitude %>
+</p>
+
+
+<%= link_to 'Edit', edit_stage_path(@stage) %> |
+<%= link_to 'Back', stages_path %>
