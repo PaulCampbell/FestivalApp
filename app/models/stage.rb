@@ -17,6 +17,8 @@
 class Stage < ActiveRecord::Base
 	belongs_to :festival
 	
+	has_many :bands, :through => :events, :source => "band_id"
+	
 	attr_accessible :name, :description, :latitude, :longitude, :picture
 
 

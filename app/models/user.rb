@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20101031135513
+# Schema version: 20101031155334
 #
 # Table name: users
 #
@@ -9,6 +9,7 @@
 #  created_at         :datetime
 #  updated_at         :datetime
 #  encrypted_password :string(255)
+#  admin              :boolean
 #
 
 class User < ActiveRecord::Base
@@ -30,6 +31,9 @@ attr_accessor :password
 						 
 	before_save :encrypt_password  # => { :if => :password_is_updated?}
 	
+	cattr_reader :per_page
+    @@per_page = 10
+	
 
 	
 	def has_password?(submitted_password)
@@ -44,7 +48,7 @@ attr_accessor :password
 
     def self.authenticate_with_salt(id, cookie_salt)
       user = find_by_id(id)
-      (user && user.salt == cookie_salt) ? user : nil
+      (user && user.passwordsalt == cookie_salt) ? user : nil
     end
 	
 

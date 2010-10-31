@@ -4,6 +4,7 @@ gem 'rails', '3.0.0'
 gem 'jquery-rails'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'date_validator'
+gem "will_paginate", "~> 3.0.pre2"
 
 # To use debugger
 # gem 'ruby-debug'

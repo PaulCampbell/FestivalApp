@@ -13,6 +13,8 @@
 #
 
 class Band < ActiveRecord::Base
+	
+	has_many :stages, :through => :events, :source => "stage_id"
 
     attr_accessible :name, :description, :weblink, :picture
 	
