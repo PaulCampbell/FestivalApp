@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20101025182802
+# Schema version: 20101030195840
 #
 # Table name: festivals
 #
@@ -8,21 +8,11 @@
 #  startdate   :date
 #  enddate     :date
 #  description :text
-#  website     :string(255)
 #  logo        :string(255)
 #  created_at  :datetime
 #  updated_at  :datetime
 #
 
 class Festival < ActiveRecord::Base
-	has_many :stages
-	
-	validates :name, :presence => true, :length => { :maximum => 250 }
-	
-	validates :startdate, :presence => true
-	
-	validates :enddate, :presence => true
-	
-	
-
+  has_many :stages
 end

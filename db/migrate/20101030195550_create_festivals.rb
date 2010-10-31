@@ -5,7 +5,6 @@ class CreateFestivals < ActiveRecord::Migration
       t.date :startdate
       t.date :enddate
       t.text :description
-      t.string :website
       t.string :logo
 
       t.timestamps

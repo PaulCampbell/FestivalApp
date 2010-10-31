@@ -4,7 +4,7 @@ class CreateStages < ActiveRecord::Migration
       t.integer :festival_id
       t.string :name
       t.text :description
-      t.string :image
+      t.string :picture
       t.float :longitude
       t.float :latitude
 

@@ -2,9 +2,9 @@ class CreateBands < ActiveRecord::Migration
   def self.up
     create_table :bands do |t|
       t.string :name
-      t.string :description
-      t.string :picture
+      t.text :description
       t.string :weblink
+      t.string :picture
 
       t.timestamps
     end

@@ -1,7 +1,7 @@
 FestivalApp::Application.routes.draw do
-  resources :bands
-
   resources :stages
+
+  resources :bands
 
   resources :festivals
 

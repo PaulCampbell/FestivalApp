@@ -10,13 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101025182802) do
+ActiveRecord::Schema.define(:version => 20101030195840) do
 
   create_table "bands", :force => true do |t|
     t.string   "name"
-    t.string   "description"
-    t.string   "picture"
+    t.text     "description"
     t.string   "weblink"
+    t.string   "picture"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(:version => 20101025182802) do
     t.date     "startdate"
     t.date     "enddate"
     t.text     "description"
-    t.string   "website"
     t.string   "logo"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -36,9 +35,17 @@ ActiveRecord::Schema.define(:version => 20101025182802) do
     t.integer  "festival_id"
     t.string   "name"
     t.text     "description"
-    t.string   "image"
+    t.string   "picture"
     t.float    "longitude"
     t.float    "latitude"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "email"
+    t.string   "password"
+    t.string   "passwordsalt"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
