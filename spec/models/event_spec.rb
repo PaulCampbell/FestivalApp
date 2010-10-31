@@ -26,7 +26,7 @@ describe Event do
 		
 		it "must have a band" do
 			event_with_no_band = Event.create(@attr.merge(:band => nil))
-			event_with_no_stage.should_not be_valid
+			event_with_no_band.should_not be_valid
 		end
 		
 		it "must have a starttime" do
@@ -39,12 +39,12 @@ describe Event do
 			invalid_event.should_not be_valid
 		end
 		
-		it "must have an endtime after the startdate" do
+		it "must not have an endtime before the starttime" do
 			invalid_event = Event.create(@attr.merge(:endtime => DateTime.new(2011,1,1,21,00,00), :starttime => DateTime.new(2011,1,1,22,00,00)))
 			invalid_event.should_not be_valid
 		end
 		
-		it "must cannot have have an endtime before the starttime" do
+		it "must have an endtime after the starttime" do
 			valid_event = Event.create((@attr.merge(:endtime => DateTime.new(2011,1,1,21,00,00), :starttime => DateTime.new(2011,1,1,20,00,00))))
 			valid_event.should be_valid
 		end

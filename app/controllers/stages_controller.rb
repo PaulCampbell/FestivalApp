@@ -2,6 +2,7 @@ class StagesController < ApplicationController
   # GET /stages
   # GET /stages.xml
   def index
+	@festival = Festival.find(params[:festival_id])
     @stages = Stage.all
 
     respond_to do |format|
@@ -24,7 +25,8 @@ class StagesController < ApplicationController
   # GET /stages/new
   # GET /stages/new.xml
   def new
-    @stage = Stage.new
+	@festival = Festival.find(params[:festival_id])
+    @stage = @festival.stages.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,17 +36,20 @@ class StagesController < ApplicationController
 
   # GET /stages/1/edit
   def edit
+  
+	@festival = Festival.find(params[:festival_id])
     @stage = Stage.find(params[:id])
   end
 
-  # POST /stages
-  # POST /stages.xml
+  # POST festivals/1/stages
+  # POST festivals/1/stages.xml
   def create
-    @stage = Stage.new(params[:stage])
+    @festival = Festival.find(params[:festival_id])
+    @stage = @festival.stages.build(params[:stage])
 
     respond_to do |format|
       if @stage.save
-        format.html { redirect_to(@stage, :notice => 'Stage was successfully created.') }
+        format.html { redirect_to(@festival, :notice => 'Stage was successfully created.') }
         format.xml  { render :xml => @stage, :status => :created, :location => @stage }
       else
         format.html { render :action => "new" }
@@ -56,11 +61,12 @@ class StagesController < ApplicationController
   # PUT /stages/1
   # PUT /stages/1.xml
   def update
+	@festival = Festival.find(params[:festival_id])
     @stage = Stage.find(params[:id])
 
     respond_to do |format|
       if @stage.update_attributes(params[:stage])
-        format.html { redirect_to(@stage, :notice => 'Stage was successfully updated.') }
+        format.html { redirect_to(festival_stage_path(@festival, @stage), :notice => 'Stage was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

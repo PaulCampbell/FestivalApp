@@ -19,7 +19,7 @@ class Stage < ActiveRecord::Base
 	
 	has_many :bands, :through => :events, :source => "band_id"
 	
-	attr_accessible :name, :description, :latitude, :longitude, :picture
+	attr_accessible :name, :description, :latitude, :longitude, :picture, :festival	
 
 
 	validates :name,  :presence => true,

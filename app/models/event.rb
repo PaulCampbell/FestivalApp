@@ -20,10 +20,14 @@ class Event < ActiveRecord::Base
 	
 	validates :date, :presence => true
 	
+	validates :stage_id, :presence => true
+	
+	validates :band_id, :presence => true
+	
 	validates :starttime, :presence => true
   
     validates :endtime, :presence => true	,
-                      :date => { :after => :starttime }
+                        :date => { :after => :starttime }
 	
 
 end

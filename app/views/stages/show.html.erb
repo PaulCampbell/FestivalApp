@@ -1,14 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Festival:</b>
-  <%= @stage.festival_id %>
-</p>
 
-<p>
-  <b>Name:</b>
+<h1>
   <%= @stage.name %>
-</p>
+</h1>
 
 <p>
   <b>Description:</b>
@@ -31,5 +26,5 @@
 </p>
 
 
-<%= link_to 'Edit', edit_stage_path(@stage) %> |
-<%= link_to 'Back', stages_path %>
+<%= link_to 'Edit', edit_festival_stage_path(@stage.festival,@stage) %> |
+<%= link_to 'Back', festival_path(@stage.festival) %>

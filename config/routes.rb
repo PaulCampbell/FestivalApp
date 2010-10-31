@@ -11,11 +11,14 @@ FestivalApp::Application.routes.draw do
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
 
-  resources :stages
-
   resources :bands
 
-  resources :festivals
+  resources :festivals do
+	resources :stages
+  end
+ 
+ resources :stages
+
   
   resources :users
   
