@@ -16,4 +16,13 @@
 
 class Stage < ActiveRecord::Base
 	belongs_to :festival
+	
+	attr_accessible :name, :description, :latitude, :longitude, :picture
+
+
+	validates :name,  :presence => true,
+					  :length => {:maximum => 100}
+
+	
+
 end

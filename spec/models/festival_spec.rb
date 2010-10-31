@@ -30,7 +30,7 @@ describe Festival do
     it "should reject overly long descriptions" do
 	  long_description = "a" * 251
 	  hash = @attr.merge(:description => long_description)
-	  User.new(hash).should_not be_valid
+	  Festival.new(hash).should_not be_valid
   end
   
   it "should require a startdate" do
@@ -47,6 +47,16 @@ describe Festival do
   it "should require start date to be the same as or older than end date" do
     invalid_festival = Festival.new(@attr.merge(:enddate => 2.days.ago, :startdate => 1.days.ago))
 	invalid_festival.should_not be_valid
+  end
+  
+  it "should allow start dates that are before the end date" do
+    valid_festival = Festival.new(@attr.merge(:enddate => 1.days.ago, :startdate => 2.days.ago))
+	valid_festival.should be_valid
+  end
+  
+    it "should allow start dates that are the same as the end date" do
+    valid_festival = Festival.new(@attr.merge(:enddate => 1.days.ago, :startdate => 1.days.ago))
+	valid_festival.should be_valid
   end
   
   end

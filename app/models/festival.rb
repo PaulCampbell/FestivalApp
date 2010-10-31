@@ -14,5 +14,17 @@
 #
 
 class Festival < ActiveRecord::Base
-  has_many :stages
+  has_many :stages,  :dependent => :destroy
+  attr_accessible :name, :description, :startdate, :enddate, :logo
+  
+  validates :name, :presence => true,
+                   :length => {:maximum => 100}
+                   
+  validates :description, :length => {:maximum => 250}
+  
+  validates :startdate, :presence => true
+  
+  validates :enddate, :presence => true	,
+                      :date => { :after_or_equal_to => :startdate }
+  
 end

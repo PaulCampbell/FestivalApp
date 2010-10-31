@@ -17,7 +17,7 @@ describe Stage do
 		end
 		
 		it "should reject names that are too long" do
-			long_name_stage = Stage.cr eate(@attr.merge(:name => "a"*101))
+			long_name_stage = Stage.create(@attr.merge(:name => "a"*101))
 			long_name_stage.should_not be_valid
 		end
 	

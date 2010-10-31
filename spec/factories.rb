@@ -1,9 +1,15 @@
 # By using the symbol ':user', we get Factory Girl to simulate the User model.
+Factory.define :user do |user|
+  user.email                 "paulcampbell@example.com"
+  user.password              "someword"
+  user.password_confirmation "someword"
+end
+
 Factory.define :festival do |festival|
   festival.name                  "Pheonix"
   festival.description           "some description"
-  festival.startdate             2011-07-12
-  festival.enddate				 2011-07-15
+  festival.startdate             '2011-07-10'
+  festival.enddate				 '2011-08-10'
 end
 
 Factory.define :stage do |stage|
@@ -16,7 +22,7 @@ Factory.define :stage do |stage|
 end
 
 Factory.define :band do |band|
-  band.name = "The Levellers"
-  band.description => "Folk punk band formed in 1992.",
-  band.weblink => "http://www.google.com"
+  band.name				"The Levellers"
+  band.description		"Folk punk band formed in 1992."
+  band.weblink			"http://www.google.com"
 end

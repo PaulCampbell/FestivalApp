@@ -13,4 +13,12 @@
 #
 
 class Band < ActiveRecord::Base
+
+    attr_accessible :name, :description, :weblink, :picture
+	
+	validates :name,  :presence => true,
+					  :length => {:maximum => 150}
+
+	
+
 end

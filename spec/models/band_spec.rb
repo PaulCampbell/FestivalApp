@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Band do
+  
   before(:each) do
 	@attr = {
 		:name => "The Levellers",
@@ -10,13 +11,14 @@ describe Band do
   end
   
   describe "validation" do
+	
 	it "should have a name" do
-		no_name_band = Band.create(@attr.merge(:name => "")
+		no_name_band = Band.create(@attr.merge(:name => ""))
 		no_name_band.should_not be_valid
 	end
 	
-	if "shoud reject long names" do
-		long_name_band = Band.create(@attr.merge(:name => "a" * 151)
+	it "shoud reject long names" do
+		long_name_band = Band.create(@attr.merge(:name => "a" * 151))
 		long_name_band.should_not be_valid
 	end
   
