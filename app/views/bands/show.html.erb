@@ -1,9 +1,9 @@
+<div class="container paddingbottom">
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
+<h1>
   <%= @band.name %>
-</p>
+</h1>
 
 <p>
   <b>Description:</b>
@@ -23,3 +23,4 @@
 
 <%= link_to 'Edit', edit_band_path(@band) %> |
 <%= link_to 'Back', bands_path %>
+</div>

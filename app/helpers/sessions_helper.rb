@@ -25,10 +25,10 @@ module SessionsHelper
   
   
   def admin_user
-	  if !current_user.nil? 
+	 if !current_user.nil? 
 	     redirect_to(root_path) unless current_user.admin? 
 	  else
-	    redirect_to(signin_path)
+	    redirect_to(root_path)
 	  end
      
   end
@@ -51,8 +51,7 @@ module SessionsHelper
   
   def deny_access
     store_location
-    flash[:notice] = "Please sign in to access this page."
-    redirect_to signin_path
+    redirect_to root_path
   end
   
   def store_location

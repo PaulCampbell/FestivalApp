@@ -1,4 +1,9 @@
 class BandsController < ApplicationController
+
+  before_filter :admin_user,   :only => :destroy
+  before_filter :authenticate, :only => [:edit, :update, :new, :create]
+
+
   # GET /bands
   # GET /bands.xml
   def index
@@ -60,7 +65,8 @@ class BandsController < ApplicationController
 
     respond_to do |format|
       if @band.update_attributes(params[:band])
-        format.html { redirect_to(@band, :notice => 'Band was successfully updated.') }
+        flash[:success] = "Band updated"
+        format.html { redirect_to(@band) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -71,7 +77,7 @@ class BandsController < ApplicationController
 
   # DELETE /bands/1
   # DELETE /bands/1.xml
-  def destroy
+  def destroy 
     @band = Band.find(params[:id])
     @band.destroy
 

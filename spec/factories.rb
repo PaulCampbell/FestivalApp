@@ -17,7 +17,7 @@ Factory.define :stage do |stage|
   stage.description				"Stage description"
   stage.latitude				-1.4324542
   stage.longitude				56.23423
-  stage.festival				:festival
+  stage.association				:festival
   stage.picture					"http://www.google.com/img.src"
 end
 

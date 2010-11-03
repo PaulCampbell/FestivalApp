@@ -16,6 +16,13 @@ FestivalApp::Application.routes.draw do
   resources :festivals do
 	resources :stages
   end
+  
+  
+  resources :stages do
+	resources :events
+  end
+  
+  resources :events
  
  resources :stages
 

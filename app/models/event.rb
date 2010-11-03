@@ -15,6 +15,8 @@
 #
 
 class Event < ActiveRecord::Base
+
+	has_one :band 
 	
 	attr_accessible :stage_id, :band_id, :description, :starttime, :endtime, :date
 	

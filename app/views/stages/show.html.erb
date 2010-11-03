@@ -26,5 +26,9 @@
 </p>
 
 
-<%= link_to 'Edit', edit_festival_stage_path(@stage.festival,@stage) %> |
+<%= link_to 'Edit', edit_festival_stage_path(@stage.festival,@stage) %><br/>
+
+<%= link_to "Add event +", new_stage_event_path(@stage) %>
+
+<br/>
 <%= link_to 'Back', festival_path(@stage.festival) %>
