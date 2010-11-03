@@ -1,4 +1,7 @@
 class FestivalsController < ApplicationController
+  before_filter :admin_user,   :only => :index
+  
+  
   # GET /festivals
   # GET /festivals.xml
   def index

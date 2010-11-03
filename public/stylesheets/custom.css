@@ -19,7 +19,7 @@ header h1 { color:#dedede; width:50%; }
 header h1 span { position:relative; left:-3000px; }
 
 header nav ul {list-style:none; float:right; position:relative; top:5px; left:10px; }
-header nav ul li { list-style:none; float:left; padding-left: 50px; padding-right:20px; } 
+header nav ul li { list-style:none; float:left; padding-left: 20px; padding-right:20px; } 
 header a{ color:white; font-weight:bold; text-decoration:none; font-size:100% }
 header a:hover {color: #5b8614; }
 

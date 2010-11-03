@@ -4,13 +4,19 @@ describe BandsController do
 	render_views
 	
 	describe "Get 'index'" do
+	  
+	  before(:each) do
+	    	band1 = Factory(:band)
+  			band2 = Factory(:band, :name => "Band 2")
+
+  			@bands = [band1, band2]
+    end
+	  
+	  describe "for admin users" do
 	
 		before(:each) do
-			@user = test_sign_in(Factory(:user))
-			band1 = Factory(:band)
-			band2 = Factory(:band, :name => "Band 2")
-			
-			@bands = [band1, band2]
+			@user = test_sign_in(Factory(:user, :admin => true))
+		
 		end
 		
 		it "should be successful" do
@@ -24,6 +30,27 @@ describe BandsController do
 				response.should have_selector("tr", :content => band.name)
 			end
 		end
+		
+	end
+	
+	  describe "for signed in user" do
+	    before(:each) do
+	      @user = test_sign_in(Factory(:user))
+      end
+
+  		it "should be unsuccessful" do
+  			get :index
+  			response.should redirect_to(root_path)
+  		end
+      
+    end
+    
+    describe "for non signed in user" do
+      it "should be unsuccessful" do
+    			get :index
+    			response.should redirect_to(root_path)
+    	end
+    end
 	
 	end
 	
@@ -84,6 +111,8 @@ describe BandsController do
     describe "failure" do
 
       before(:each) do
+         @user = Factory(:user)
+          test_sign_in(@user)
         @attr = { :name => "", :description => "" }
       end
 
@@ -103,7 +132,7 @@ describe BandsController do
 	describe "success" do
 
       before(:each) do
-	    @user = Factory(:user)
+	      @user = Factory(:user)
         test_sign_in(@user)
 		
         @attr = { :name => "band 1",

@@ -1,6 +1,6 @@
 class BandsController < ApplicationController
 
-  before_filter :admin_user,   :only => :destroy
+  before_filter :admin_user,   :only => [:destroy, :index]
   before_filter :authenticate, :only => [:edit, :update, :new, :create]
 
 

@@ -1,0 +1,8 @@
+<h2>
+  <%= link_to festival.name, festival_path(festival) %>
+</h2>
+<p>
+  <%= festival.description %>
+</p>
+Start date <time datetime="<%= format_iso_date festival.startdate %>"><%= format_date_short(festival.startdate) %></time><br/>
+End date <time datetime="<%= format_iso_date festival.enddate %>"><%= format_date_short(festival.enddate) %></time>

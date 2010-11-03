@@ -1,29 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-
-<h1>
-  <%= @stage.name %>
-</h1>
-
-<p>
-  <b>Description:</b>
-  <%= @stage.description %>
-</p>
-
-<p>
-  <b>Picture:</b>
-  <%= @stage.picture %>
-</p>
-
-<p>
-  <b>Longitude:</b>
-  <%= @stage.longitude %>
-</p>
-
-<p>
-  <b>Latitude:</b>
-  <%= @stage.latitude %>
-</p>
+<%= render @stage %>
 
 
 <%= link_to 'Edit', edit_festival_stage_path(@stage.festival,@stage) %><br/>

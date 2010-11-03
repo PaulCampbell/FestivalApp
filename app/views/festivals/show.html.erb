@@ -1,28 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>
-  <%= @festival.name %>
-</h1>
-
-<p>
-  <b>Startdate:</b>
-  <%= @festival.startdate %>
-</p>
-
-<p>
-  <b>Enddate:</b>
-  <%= @festival.enddate %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @festival.description %>
-</p>
-
-<p>
-  <b>Logo:</b>
-  <%= @festival.logo %>
-</p>
+<%= render @festival %>
 
 <%= link_to 'Edit', edit_festival_path(@festival) %> 
 
@@ -30,9 +8,7 @@
 <div>
 	<% if !@festival.stages.nil?%>
 	 <ol>
-		<% @festival.stages.each do |s| %>
-		<li>	<%= link_to s.name, festival_stage_path(@festival.id, s)	%> </li>
-		<% end %>
+		<%= render  @festival.stages %>
 	<ol>
 	<% end if %>
 	<%= link_to "add stage +",  new_festival_stage_path (@festival)  %>

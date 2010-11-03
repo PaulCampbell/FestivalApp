@@ -18,6 +18,8 @@ class Event < ActiveRecord::Base
 
 	has_one :band 
 	
+	has_one :stage
+	
 	attr_accessible :stage_id, :band_id, :description, :starttime, :endtime, :date
 	
 	validates :date, :presence => true
@@ -28,7 +30,7 @@ class Event < ActiveRecord::Base
 	
 	validates :starttime, :presence => true
   
-    validates :endtime, :presence => true	,
+  validates :endtime, :presence => true	,
                         :date => { :after => :starttime }
 	
 

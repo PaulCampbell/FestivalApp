@@ -24,6 +24,7 @@ class EventsController < ApplicationController
   # GET /Events/new
   # GET /Events/new.xml
   def new
+    @stage = Stage.find(params[:stage_id])
     @event= Event.new
 
     respond_to do |format|
@@ -40,8 +41,20 @@ class EventsController < ApplicationController
   # POST /Events
   # POST /Events.xml
   def create
-    @event= Event.new(params[:Event])
+   
+    band = Band.where(:name => params[:artist_name])
+    if band.nil?
+      new_band = Band.new
+      new_band.name = params[:artist_name]
+      new_band.save
+      band = new_band
+    end
+    
+    @stage = Stage.find(params[:stage_id])
+   @event = @stage.events.build(params[:event].merge(:band_id => band.id))
+    
 
+    
     respond_to do |format|
       if @event.save
         format.html { redirect_to(@event, :notice => 'Event was successfully created.') }

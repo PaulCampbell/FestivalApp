@@ -6,9 +6,10 @@ describe PagesController do
     
     describe "as logged in user" do
       it "should be redirect to user page" do
-        get 'home'
+        
         @user = Factory(:user)
         test_sign_in(@user)
+        get 'home'
         response.should redirect_to(user_path(@user))
       end
     end

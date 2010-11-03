@@ -1,5 +1,5 @@
 
-<%= form_for(@event) do |f| %>
+<%= form_for([@stage,@event]) do |f| %>
   <% if @event.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
@@ -13,22 +13,23 @@
   <% end %>
 
   <div class="field">
-    <%= f.label "Artist name" %><br />
-    <%= f.text_field :band %>
+    <%= f.label "Artist name" %>
+    <input type="text" name="artist_name" id="artist_name" />
   </div>
   <div class="field">
-    <%= f.label :starttime %><br />
+    <%= f.label :starttime %>
     <%= f.date_select :starttime %>
   </div>
   <div class="field">
-    <%= f.label :endtime %><br />
+    <%= f.label :endtime %>
     <%= f.date_select :endtime %>
   </div>
   <div class="field">
-    <%= f.label :description %><br />
+    <%= f.label :description %>
     <%= f.text_area :description %>
   </div>
   <div class="actions">
+	<%= f.hidden_field  :stage_id %>
     <%= f.submit %>
   </div>
 <% end %>
