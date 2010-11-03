@@ -4,5 +4,11 @@
 <div class="largeSection span-15">
 
 	<%= render @user %>
+	
+	<% @user.festivals.each do |f| %>
+		<%= link_to f.name, festival_path(f) %>
+	<% end %>
+	
+	<%= link_to("Add a festival", new_festival_path) %>
 </div>
 </div>

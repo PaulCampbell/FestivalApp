@@ -15,6 +15,8 @@
 
 class Festival < ActiveRecord::Base
   has_many :stages,  :dependent => :destroy
+  
+  has_many :user_festivals
   has_many :users, :through => :user_festivals
   attr_accessible :name, :description, :startdate, :enddate, :logo
   

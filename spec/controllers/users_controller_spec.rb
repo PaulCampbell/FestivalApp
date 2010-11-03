@@ -5,46 +5,66 @@ describe UsersController do
   
   describe "GET 'index'" do
 
+    describe "as admin user" do
       before(:each) do
-        @user = test_sign_in(Factory(:user))
+        @user = test_sign_in(Factory(:user, :admin => true))
         second = Factory(:user, :email => "another@example.com")
         third  = Factory(:user, :email => "another@example.net")
 
         @users = [@user, second, third]
       end
-
-      it "should be successful" do
-        get :index
-        response.should be_success
-      end
-
       
-      it "should have an element for each user" do
-        get :index
-        @users.each do |user|
-          response.should have_selector("li", :content => user.email)
+        it "should be successful" do
+          get :index
+          response.should be_success
         end
-      end
+
+
+        it "should have an element for each user" do
+          get :index
+          @users.each do |user|
+            response.should have_selector("li", :content => user.email)
+          end
+        end
+        
+    end
+
+        describe "as non admin user" do
+           before(:each) do
+              @user = test_sign_in(Factory(:user, :admin => false))
+              second = Factory(:user, :email => "another@example.com")
+              third  = Factory(:user, :email => "another@example.net")
+
+              @users = [@user, second, third]
+            end
+
+              it "should be unsuccessful" do
+                get :index
+                response.should_not be_success
+              end
+          
+        end
+        
+          describe "as non signed in user" do
+             before(:each) do
+                first =Factory(:user)
+                second = Factory(:user, :email => "another@example.com")
+                third  = Factory(:user, :email => "another@example.net")
+
+                @users = [first, second, third]
+              end
+
+                it "should be unsuccessful" do
+                  get :index
+                  response.should_not be_success
+                end
+
+          end
+
+    
     end
 
 
-  describe "GET 'show'" do
-
-    before(:each) do
-      @user = Factory(:user)
-    end
-
-    it "should be successful" do
-      get :show, :id => @user
-      response.should be_success
-    end
-
-    it "should find the right user" do
-      get :show, :id => @user
-      assigns(:user).should == @user
-    end
-     
-  end 
   
   describe "GET 'new'" do
   
@@ -72,7 +92,7 @@ describe UsersController do
 
 	  it "should redirect to the users page" do
 	    get :new
-		response.should redirect_to(users_path)
+		response.should redirect_to(user_path(@user))
 	  end
 	  
 	end
@@ -141,7 +161,7 @@ describe UsersController do
 	
 	  it "should redirect to the users page" do
 	    post :create, :user => @attr
-		response.should redirect_to(users_path)
+		response.should redirect_to(user_path(@user))
 	  end
 	end
 	
@@ -212,7 +232,7 @@ describe UsersController do
   end
   
   
-  describe "authentication of edit/update pages" do
+  describe "authentication of edit/update/show pages" do
 
     before(:each) do
       @user = Factory(:user)
@@ -246,6 +266,28 @@ describe UsersController do
       it "should require matching users for 'update'" do
         put :update, :id => @user, :user => {}
         response.should redirect_to(root_path)
+      end
+      
+        it "should require matching users for 'show'" do
+          get :show, :id => @user
+          response.should redirect_to(root_path)
+        end
+    end
+    
+    describe "for correct user" do
+      
+      before (:each) do
+        test_sign_in(@user)
+      end
+      
+      it "should show the page" do    
+          get :show, :id => @user
+          response.should be_success
+      end
+      
+      it "should find the right user" do
+        get :show, :id => @user
+        assigns(:user).should == @user
       end
     end
 	

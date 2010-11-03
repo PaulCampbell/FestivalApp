@@ -15,6 +15,8 @@
 class User < ActiveRecord::Base
 
 attr_accessor :password
+  
+  has_many :user_festivals
 	has_many :festivals, :through => :user_festivals
 
     attr_accessible :email, :password, :password_confirmation

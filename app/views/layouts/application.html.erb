@@ -15,7 +15,12 @@
 <body>
 	<div class="container">
 		<header>
-	
+			<h1><%= link_to "Festival Compass", root_path %></h1>
+			<% if signed_in? %>
+			 <%= link_to "Sign out", signout_path, :method => :delete %>
+			<% else %>
+			<%= link_to "Sign in", signin_path %>
+			<% end %>
 		</header>
 			<div class="bodypadding">
 			<%= yield %>

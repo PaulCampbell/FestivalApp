@@ -116,5 +116,31 @@ describe User do
   end
   
 
+  describe "associations" do
+  
+    before(:each) do
+	    @user = User.create!(@attr)
+	    @festival1 = Factory(:festival, :name => "Festival 1")
+	    @festival2 = Factory(:festival, :name => "Festival 2")
+	    @user.festivals << @festival1
+	    @user.festivals << @festival2
+    end
+  
+  it "should have a stages attribute" do
+	  @user.should respond_to(:festivals)
+	end
+	
+	it "should have the right festivals" do
+	  @user.festivals.should == [@festival1, @festival2]
+	end
+	
+	it "should not destroy the user's festivals" do
+	  @user.destroy
+	  [@festival1, @festival2].each do |f|
+	    Festival.find_by_id(f.id).should_not be_nil
+	  end
+	end
+  
+  end
 
 end

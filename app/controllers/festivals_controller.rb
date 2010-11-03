@@ -41,7 +41,7 @@ class FestivalsController < ApplicationController
   # POST /festivals.xml
   def create
     @festival = Festival.new(params[:festival])
-
+    current_user.festivals << @festival
     respond_to do |format|
       if @festival.save
         format.html { redirect_to(@festival, :notice => 'Festival was successfully created.') }

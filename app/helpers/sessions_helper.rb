@@ -8,7 +8,7 @@ module SessionsHelper
   
   def sign_out
     cookies.delete(:remember_token)
-	current_user = nil
+	  current_user = nil
   end
   
   def current_user=(user)
@@ -42,7 +42,7 @@ module SessionsHelper
 	
 		
 	def non_signed_in_user
-	  redirect_to(users_path) unless current_user.nil?
+	  redirect_to(user_path(current_user)) unless current_user.nil?
 	end
   
   def authenticate
