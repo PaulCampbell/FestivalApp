@@ -5,6 +5,10 @@
 
 <%= link_to 'Edit', edit_festival_stage_path(@stage.festival,@stage) %><br/>
 
+<% if !@stage.events.nil? %>
+<%= render @stage.events%>
+<% end %>
+
 <%= link_to "Add event +", new_stage_event_path(@stage) %>
 
 <br/>

@@ -1,5 +1,8 @@
 class EventsController < ApplicationController
-# GET /Events
+
+
+  
+  # GET /Events
   # GET /Events.xml
   def index
     @events = Event.all
@@ -13,6 +16,7 @@ class EventsController < ApplicationController
   # GET /Events/1
   # GET /Events/1.xml
   def show
+    @stage = Stage.find(params[:stage_id])
     @event= Event.find(params[:id])
 
     respond_to do |format|
@@ -45,19 +49,17 @@ class EventsController < ApplicationController
     band = Band.where(:name => params[:artist_name])
     if band.nil?
       new_band = Band.new
-      new_band.name = params[:artist_name]
+      new_band.name = "params[:artist_name]"
       new_band.save
       band = new_band
     end
     
     @stage = Stage.find(params[:stage_id])
-   @event = @stage.events.build(params[:event].merge(:band_id => band.id))
-    
+    @event = @stage.events.build(params[:event].merge(:band_id => band.id))
 
-    
     respond_to do |format|
       if @event.save
-        format.html { redirect_to(@event, :notice => 'Event was successfully created.') }
+        format.html { redirect_to(stage_event_path(@stage, @event), :notice => 'Event was successfully created.') }
         format.xml  { render :xml => @event, :status => :created, :location => @event}
       else
         format.html { render :action => "new" }

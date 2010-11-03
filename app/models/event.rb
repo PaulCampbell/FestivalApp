@@ -16,13 +16,12 @@
 
 class Event < ActiveRecord::Base
 
-	has_one :band 
+	belongs_to :band 
 	
-	has_one :stage
+	belongs_to :stage
 	
-	attr_accessible :stage_id, :band_id, :description, :starttime, :endtime, :date
+	attr_accessible :stage_id, :band_id, :description, :starttime, :endtime, :date, :band, :stage
 	
-	validates :date, :presence => true
 	
 	validates :stage_id, :presence => true
 	
