@@ -16,6 +16,14 @@
     <%= f.label "Artist name" %>
     <input type="text" name="artist_name" id="artist_name" />
   </div>
+  <div>
+	<label for="day">Day</label>
+	<select>
+		<option value="1">Friday</option>
+		<option value="2">Saturday</option>
+		<option value="3">Sunday</option>
+	<select>
+  </div>
   <div class="field">
     <%= f.label :starttime %>
     <%= f.date_select :starttime %>
