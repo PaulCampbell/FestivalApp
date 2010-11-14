@@ -34,6 +34,12 @@
 				</ul>
 			</nav>
 		</header>
+      <section>
+	 <% flash.each do |key, value| %>
+          <div class="flash <%= key %>"><%= value %></div>
+     <% end %>
+
+</section>
 			<div class="bodypadding">
 			<%= yield %>
 			</div>

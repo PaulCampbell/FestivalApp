@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe BandsController do
 	render_views
-	
+	 
 	describe "Get 'index'" do
 	  
 	  before(:each) do

@@ -1,6 +1,6 @@
-<p id="notice"><%= notice %></p>
-
-<%= render @stage %>
+<div class="">
+<h1><%= @stage.name %></h1>
+<p><%= @stage.description %></p>
 
 
 <%= link_to 'Edit', edit_festival_stage_path(@stage.festival,@stage) %><br/>
@@ -13,5 +13,6 @@
 
 <br/>
 <%= link_to 'Back', festival_path(@stage.festival) %>
+</div>
 
 

@@ -14,7 +14,7 @@ class StagesController < ApplicationController
   # GET /stages/1
   # GET /stages/1.xml
   def show
-    @stage = Stage.find(params[:id])
+    @stage = Stage.find(params[:id] )
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,7 +25,7 @@ class StagesController < ApplicationController
   # GET /stages/new
   # GET /stages/new.xml
   def new
-	@festival = Festival.find(params[:festival_id])
+	  @festival = Festival.find(params[:festival_id])
     @stage = @festival.stages.new
 
     respond_to do |format|

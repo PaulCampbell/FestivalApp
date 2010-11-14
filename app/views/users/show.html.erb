@@ -1,12 +1,10 @@
 <div class="container paddingbottom">
-	
-<p id="notice"><%= notice %></p>
 <div class="largeSection span-15">
 
 	<%= render @user %>
 	
 	 <%= render @user.festivals %>
-	
-	<%= link_to("Add a festival", new_festival_path) %>
+	<br />
+	<%= link_to("Set up a new festival", new_festival_path) %>
 </div>
 </div>

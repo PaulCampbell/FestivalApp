@@ -29,5 +29,21 @@ class Festival < ActiveRecord::Base
   
   validates :enddate, :presence => true	,
                       :date => { :after_or_equal_to => :startdate }
+
+  def day_count
+   (enddate - startdate).to_i
+
+  end
+
+  def days
+     i = 0
+     days = Array.new
+    while i < day_count do
+      days << startdate.advance(:days => i).to_date
+      i = i+1
+    end
+
+    return days
+  end
   
 end

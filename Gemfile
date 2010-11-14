@@ -21,3 +21,6 @@ group :test do
   gem 'webrat', '0.7.1'
   gem 'factory_girl_rails', '1.0'
 end
+gem 'ruby-debug-base19' if RUBY_VERSION.include? "1.9"
+gem 'ruby-debug-base' if RUBY_VERSION.include? "1.8"
+gem "ruby-debug-ide"

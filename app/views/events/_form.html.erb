@@ -3,7 +3,6 @@
   <% if @event.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
-
       <ul>
       <% @event.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -13,24 +12,25 @@
   <% end %>
 
   <div class="field">
-    <%= f.label "Artist name" %>
-    <input type="text" name="artist_name" id="artist_name" />
+     <%= f.label :artist_name %>
+    <%= f.text_field :artist_name %>
   </div>
   <div>
-	<label for="day">Day</label>
-	<select>
-		<option value="1">Friday</option>
-		<option value="2">Saturday</option>
-		<option value="3">Sunday</option>
+    <%= f.label :days, :content =>"Day" %>
+    <!-- Todo:Sort this out... -->
+	<select name="event[description]" id="event_description">
+	<% @days.each do |d| %>
+      <option value="1"><%= d %></option>
+	<% end %>
 	<select>
   </div>
   <div class="field">
     <%= f.label :starttime %>
-    <%= f.date_select :starttime %>
+    <%= f.datetime_select :starttime %>
   </div>
   <div class="field">
     <%= f.label :endtime %>
-    <%= f.date_select :endtime %>
+    <%= f.datetime_select :endtime %>
   </div>
   <div class="field">
     <%= f.label :description %>

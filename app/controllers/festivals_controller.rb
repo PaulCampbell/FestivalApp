@@ -47,7 +47,8 @@ class FestivalsController < ApplicationController
     current_user.festivals << @festival
     respond_to do |format|
       if @festival.save
-        format.html { redirect_to(@festival, :notice => 'Festival was successfully created.') }
+        flash[:success] = "Festival was successfully created."
+        format.html { redirect_to(@festival) }
         format.xml  { render :xml => @festival, :status => :created, :location => @festival }
       else
         format.html { render :action => "new" }
@@ -63,7 +64,8 @@ class FestivalsController < ApplicationController
 
     respond_to do |format|
       if @festival.update_attributes(params[:festival])
-        format.html { redirect_to(@festival, :notice => 'Festival was successfully updated.') }
+          flash[:success] = "Festival was successfully updated."
+        format.html { redirect_to(@festival) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -77,7 +79,7 @@ class FestivalsController < ApplicationController
   def destroy
     @festival = Festival.find(params[:id])
     @festival.destroy
-
+    flash[:success] = "Festival was successfully deleted."
     respond_to do |format|
       format.html { redirect_to(festivals_url) }
       format.xml  { head :ok }

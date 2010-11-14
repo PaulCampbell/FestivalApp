@@ -7,15 +7,15 @@ describe Event do
 			:description => "event description",
 			:starttime => DateTime.new(2011,1,1,21,00,00), 
 			:endtime => DateTime.new(2011,1,1,22,00,00),
-			:date => Date.new(2011,1,1,22)
+			:day => 1
 		}
 	end
 	
 	
 	describe "validation" do
 	
-		it "must have a date" do
-			invalid_event = Event.create(@attr.merge(:date => nil))
+		it "must have a day" do
+			invalid_event = Event.create(@attr.merge(:day => nil))
 			invalid_event.should_not be_valid
 		end
 	

@@ -1,3 +1,5 @@
 <h2>
-	<%= event.band %>
+	<%= event.band.name %>
 </h2>
+<p><%= event.description %></p>
+<%= link_to "Edit", edit_event_path( event) %>
