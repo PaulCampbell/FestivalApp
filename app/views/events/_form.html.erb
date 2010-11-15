@@ -53,6 +53,13 @@
         maxDate: maximumDate
       });
 
+      $('#event_day').change(function(){
+          $( ".timePicker" ).datepicker( "option", "minDate", $('#event_day option:selected').val() );
+          var maximumDate =  new Date($('#event_day option:selected').val());
+          maximumDate.setDate(maximumDate.getDate()+1);
+          $( ".timePicker" ).datepicker( "option", "maxDate", maximumDate );   
+      })
+
     /*  $(".timePicker").change(function(){
           var pickedTime = $(this).val();
           var dateSection = new Date($('#event_day option:selected').val().replace("-", "/"));
