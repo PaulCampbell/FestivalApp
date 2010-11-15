@@ -17,7 +17,7 @@ class FestivalsController < ApplicationController
   # GET /festivals/1.xml
   def show
     @festival = Festival.find(params[:id])
-
+    @title = @festival.name
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @festival }
@@ -28,7 +28,7 @@ class FestivalsController < ApplicationController
   # GET /festivals/new.xml
   def new
     @festival = Festival.new
-
+    @title = "Add your festival"
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @festival }
@@ -44,9 +44,11 @@ class FestivalsController < ApplicationController
   # POST /festivals.xml
   def create
     @festival = Festival.new(params[:festival])
-    current_user.festivals << @festival
+    
     respond_to do |format|
       if @festival.save
+        current_user.festivals << @festival
+
         flash[:success] = "Festival was successfully created."
         format.html { redirect_to(@festival) }
         format.xml  { render :xml => @festival, :status => :created, :location => @festival }

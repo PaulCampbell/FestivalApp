@@ -7,7 +7,11 @@ module ApplicationHelper
         else
           new_date = date.strftime("%b %d")
         end
-  	end
+  end
+
+  def format_date_day_of_week(date)
+    date.strftime("%A")
+  end
 
   	def format_date_long(date, use_time = false)
   		if use_time == false

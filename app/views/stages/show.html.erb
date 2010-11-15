@@ -1,6 +1,6 @@
 <div class="standardpadding">
 <h1><%= @stage.name %></h1>
-<p><%= @stage.description %></p>
+<p><%= simple_format @stage.description %></p>
 
 
 <%= link_to 'Edit', edit_festival_stage_path(@stage.festival,@stage) %><br/>
@@ -8,7 +8,7 @@
 <% if !@stage.line_ups.nil? %>
     <% @stage.line_ups.each do |lu| %>
       <div class="lineUp">
-      <h2><%= format_date_full(lu.date) %></h2>
+      <h2><%= format_date_day_of_week(lu.date) %> <span class="light"><%= format_date_short(lu.date) %></span></h2>
 
       <% if !lu.events.nil? %>
          <ul>
@@ -16,7 +16,7 @@
             <li>
               <%= link_to "Edit", edit_event_path( e), :class =>"editLink" %>
               <h3><%= e.band.name %></h3>
-              <span><%=  format_time(e.starttime)%> - <%=  format_time(e.endtime)%></span>
+              <time datetime="<%= format_iso_datetime e.starttime %>"><%=  format_time(e.starttime)%></time> - <time datetime="<%= format_iso_datetime e.endtime %>"><%=  format_time(e.endtime)%></time>
               <p><%= e.description %></p>
 
             </li>

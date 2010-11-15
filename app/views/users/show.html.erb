@@ -1,10 +1,11 @@
 <div class="standardpadding">
-<div class="largeSection span-15">
 
-	<%= render @user %>
-	
+  <% if @user.festivals.count > 0 %>
 	 <%= render @user.festivals %>
-	<br />
+     <% else %>
+	   You have not set up any festivals yet... Click below to add your festival.
+     <% end %>
+      <br />
 	<%= link_to("Set up a new festival", new_festival_path) %>
-</div>
+
 </div>

@@ -22,11 +22,11 @@
     <%= select ("event", "day", @stage.festival.days.map {|d| [format_date_to_day_with_day_number(d),d]}) %>
   </div>
   <div class="field">
-    <%= f.label :starttime %>
+    <%= f.label :starttime,"Start time" %>
      <%= f.text_field :starttime, :class => "timePicker" %>
   </div>
   <div class="field">
-    <%= f.label :endtime %>
+    <%= f.label :endtime,"End time" %>
     <%= f.text_field :endtime, :class => "timePicker" %>
   </div>
   <div class="field">
@@ -62,19 +62,13 @@
           $( ".timePicker" ).datepicker( "option", "maxDate", maximumDate );
       })
 
-    /*  $(".timePicker").change(function(){
-          var pickedTime = $(this).val();
-          var dateSection = new Date($('#event_day option:selected').val().replace("-", "/"));
-          $(this).val($('#event_day option:selected').val() + " " + pickedTime);
-      }) */
-
   })
 
 </script>
 
 <% end %>
 
-
+<%= link_to 'Destroy', @event, :confirm => 'Are you sure?', :method => :delete %><br/>
 <%= link_to 'Back', @stage %>
 
 </div>
