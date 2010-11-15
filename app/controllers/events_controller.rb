@@ -1,6 +1,4 @@
 class EventsController < ApplicationController
-
-
   
   # GET /Events
   # GET /Events.xml
@@ -28,9 +26,10 @@ class EventsController < ApplicationController
   # GET /Events/new
   # GET /Events/new.xml
   def new
-    @stage = Stage.find(params[:stage_id])
+    @title = "Add performance"
+
+    @stage = Stage.find(params[:stage_id], :include => :festival)
     @event= Event.new
-    @days = @stage.festival.days
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,6 +40,7 @@ class EventsController < ApplicationController
   # GET /Events/1/edit
   def edit
     @event = Event.find(params[:id], :include => :stage)
+    @stage = @event.stage
     @days = @event.stage.festival.days
   end
 
@@ -58,16 +58,16 @@ class EventsController < ApplicationController
       band = new_band
     end
     
-    stage = Stage.find(params[:stage_id])
+    @stage = Stage.find(params[:stage_id], :include => :festival)
 
 
 
     @event.band_id = band.id
-    @event.stage_id = stage.id
+    @event.stage_id = @stage.id
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to(stage_path(stage), :notice => 'Event was successfully created.') }
+        format.html { redirect_to(stage_path(@stage), :notice => 'Event was successfully created.') }
         format.xml  { render :xml => @event, :status => :created, :location => @event}
       else
         format.html { render :action => "new" }
@@ -81,19 +81,10 @@ class EventsController < ApplicationController
   def update
     @event= Event.find(params[:id])
 
-    band = Band.find(:first, :conditions => [ "name = :u", { :u =>  params[:artist_name]}])
-      if band.nil?
-        new_band = Band.new
-        new_band.name = params[:artist_name]
-        new_band.save
-        band = new_band
-      end
-
-
-    @event.band_id = band.id
+    @stage = Stage.find(params[:stage_id], :include => :festival)
 
     respond_to do |format|
-      if @event.update_attributes(params[:event])
+      if @event.update_attributes(params[:event].merge(:artist_name =>@event.band.name))
         format.html { redirect_to( stage_path(@event.stage), :notice => 'Event was successfully updated.') }
         format.xml  { head :ok }
       else

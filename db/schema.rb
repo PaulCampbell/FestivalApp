@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101106125501) do
+ActiveRecord::Schema.define(:version => 20101115093602) do
 
   create_table "bands", :force => true do |t|
     t.string   "name"
@@ -27,9 +27,9 @@ ActiveRecord::Schema.define(:version => 20101106125501) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "day"
     t.datetime "starttime"
     t.datetime "endtime"
+    t.date     "day"
   end
 
   add_index "events", ["band_id"], :name => "index_events_on_band_id"

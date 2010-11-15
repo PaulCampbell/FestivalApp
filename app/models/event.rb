@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20101106124830
+# Schema version: 20101115093602
 #
 # Table name: events
 #
@@ -9,10 +9,9 @@
 #  description :text
 #  created_at  :datetime
 #  updated_at  :datetime
-#  date        :date
-#  day         :integer
-#  starttime   :time
-#  endtime     :time
+#  starttime   :datetime
+#  endtime     :datetime
+#  day         :date
 #
 
 class Event < ActiveRecord::Base
@@ -23,25 +22,20 @@ class Event < ActiveRecord::Base
 
   attr_accessor :artist_name
 	
-	attr_accessible :stage_id, :band_id, :description, :starttime, :endtime, :date, :band, :stage, :artist_name
+	attr_accessible :stage_id, :band_id, :description, :starttime, :endtime, :date, :band, :stage, :artist_name, :day
 	
 	
 	validates :stage_id, :presence => true
 	
-	validates :band_id, :presence => true
 
   validates :artist_name, :presence => true
+
+  validates :day, :presence => true
 	
 	validates :starttime, :presence => true
   
   validates :endtime, :presence => true	,
-                        :date => { :after => :starttime }
+                        :date => { :after => :starttime, :message => 'End time must be after start time.' }
 
-
-	#def artist_name
-   # if !self.band.nil?
-   #   self.band.name
-  #  end
- # end
 
 end

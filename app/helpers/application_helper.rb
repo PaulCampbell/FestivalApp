@@ -19,7 +19,11 @@ module ApplicationHelper
 
   	def format_iso_date(date)
   		iso_date = date.strftime("%Y-%m-%d")
-  	end
+    end
+
+    def format_date_to_day_with_day_number(date)
+      readable_date = date.strftime("%A %m-%d")
+    end
   
   
 end

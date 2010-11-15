@@ -1,5 +1,40 @@
 <h1>Edit event</h1>
 
-<%= render 'form' %>
+
+<%= form_for([@stage,@event]) do |f| %>
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+      <ul>
+      <% @event.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h2><%= @event.band.name %></h2>
+  <div>
+    <%= f.label :day, :content =>"Day" %>
+    <%= select ("event", "day", @stage.festival.days.map {|d| [format_date_to_day_with_day_number(d),d]}) %>
+  </div>
+  <div class="field">
+    <%= f.label :starttime %>
+    <%= f.datetime_select :starttime %>
+  </div>
+  <div class="field">
+    <%= f.label :endtime %>
+    <%= f.datetime_select :endtime %>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+  <div class="actions">
+	<%= f.hidden_field  :stage_id %>
+    <%= f.submit %>
+  </div>
+<% end %>
+
 
 <%= link_to 'Back', @stage %>
