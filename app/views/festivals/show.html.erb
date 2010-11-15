@@ -1,9 +1,10 @@
-<%= render @festival %>
+<div class="standardpadding">
+<div class="paddingbottom">
+  <%= render @festival %>
 
 <%= link_to 'Edit', edit_festival_path(@festival) %> 
-
+</div>
 <h2>Stages</h2>
-<div>
 	<% if !@festival.stages.nil?%>
 	<ol class="stages">
 		<%= render  @festival.stages %>
@@ -15,4 +16,5 @@
 	<%= link_to "add stage +",  new_festival_stage_path (@festival)  %>
   </div>
 	
+
 </div>

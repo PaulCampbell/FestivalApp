@@ -42,6 +42,8 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id], :include => :stage)
     @stage = @event.stage
     @days = @event.stage.festival.days
+
+    @title = "Edit event: " + @event.band.name + " at " +@stage.name
   end
 
   # POST /Events

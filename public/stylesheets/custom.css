@@ -9,7 +9,7 @@ a:hover { color:#587427 ; }
 .right { text-align:right; } 
 .rightSpace { padding-right:10px; }
 .leftSpace { padding-left:5px;}
-footer { background-color:#d6d6d6; background-image: url(/images/footerbg.gif); ; border-top:1px solid #a4a4a4; padding:20px 0 20px 0; clear:both;}
+footer { background-color:#d6d6d6;  border-top:1px solid #a4a4a4; padding:20px 0 20px 0; clear:both;}
 
 h1 {font-size:260%;
 	color: #3A3A3A; font-weight:bold; }
@@ -26,10 +26,10 @@ header a:hover {color: #5b8614; }
 footer .secondary, footer .secondary a { color: #868686}
 footer .primary {font-size:130%;}
 
-h2  { color: #5b8614; }
+h2  { color: #5b8614; margin-bottom: 0.25em; }
 .h2link a { color: #5b8614; text-decoration:none; } 
 .h2link a:hover { color:#587427  }
-.standardpadding { padding-top:20px; }
+.standardpadding { padding-top:20px; padding-bottom:20px;}
 .paddingbottom { padding-bottom:20px; }
 .nopadding { padding-bottom:0; }
 
@@ -46,13 +46,6 @@ input[type=text].title {
 h3 { color: #76A4EC; font-weight:bold;}
 
 
-.editLink {
-  background-image: url(/images/editIcon.png);
-  height:38px;
-  width:34px;
-  display:block;
-  float:right;
-}
 
 .columnSpacer {padding-right:15px;}
 
@@ -99,16 +92,16 @@ label.error { background-color:white; padding:5px 0 20px 0;}
 
 .lineUp{ float:left; width:33%; margin:0 2px;}
 .lineUp ul {margin:0; padding:0; list-style:none;}
-.lineUp li {margin:0; padding:2px; list-style:none;}
+.lineUp li {margin:0 2px; padding:2px; list-style:none;}
 .lineUp h3 {color:#131313; padding:0 0 4px 0; margin:0;}
 
 .listings { clear:both;}
-
+.listings .editLink { float:right;}
 
 /* Super awesome buttons */
 
 .awesome, .awesome:visited {
-	background: #222 url(/images/alert-overlay.png) repeat-x; 
+	background: #222 ;
 	display: inline-block; 
 	padding: 5px 10px 6px; 
 	color: #fff; 
@@ -125,7 +118,7 @@ label.error { background-color:white; padding:5px 0 20px 0;}
  
 	.awesome:hover							{ background-color: #111; color: #fff; }
 	.awesome:active							{ top: 1px; }
-	.small.awesome, .small.awesome:visited 			{ font-size: 11px; padding: ; }
+	.small.awesome, .small.awesome:visited 			{ font-size: 11px;  }
 	.awesome, .awesome:visited,
 	.medium.awesome, .medium.awesome:visited 		{ font-size: 13px; font-weight: bold; line-height: 1; text-shadow: 0 -1px 1px rgba(0,0,0,0.25); }
 	.large.awesome, .large.awesome:visited 			{ font-size: 14px; padding: 8px 14px 9px; }
