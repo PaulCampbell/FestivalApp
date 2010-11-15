@@ -14,17 +14,19 @@
   <% end %>
 
   <h2><%= @event.band.name %></h2>
+
+
   <div>
     <%= f.label :day, :content =>"Day" %>
     <%= select ("event", "day", @stage.festival.days.map {|d| [format_date_to_day_with_day_number(d),d]}) %>
   </div>
   <div class="field">
     <%= f.label :starttime %>
-    <%= f.datetime_select :starttime %>
+     <%= f.text_field :starttime, :class => "timePicker" %>
   </div>
   <div class="field">
     <%= f.label :endtime %>
-    <%= f.datetime_select :endtime %>
+    <%= f.text_field :endtime, :class => "timePicker" %>
   </div>
   <div class="field">
     <%= f.label :description %>
@@ -34,7 +36,43 @@
 	<%= f.hidden_field  :stage_id %>
     <%= f.submit %>
   </div>
+
+
+
+<link rel="stylesheet" media="all" type="text/css" href="/stylesheets/jquery-ui-1.8.custom.css" />
+<script type="text/javascript" src="/javascripts/jquery-ui-1.8.custom.min.js"></script>
+<script type="text/javascript" src="/javascripts/jquery-ui-timepicker-addon.min.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      var maximumDate =  new Date($('#event_day option:selected').val());
+       maximumDate.setDate(maximumDate.getDate()+1);
+      $(".timePicker").datetimepicker({
+        stepMinute: 5,
+        dateFormat: 'yy-mm-dd',
+        minDate: $('#event_day option:selected').val(),
+        maxDate: maximumDate
+      });
+
+      $('#event_day').change(function(){
+          $( ".timePicker" ).datepicker( "option", "minDate", $('#event_day option:selected').val() );
+          var maximumDate =  new Date($('#event_day option:selected').val());
+          maximumDate.setDate(maximumDate.getDate()+1);
+          $( ".timePicker" ).datepicker( "option", "maxDate", maximumDate );
+      })
+
+    /*  $(".timePicker").change(function(){
+          var pickedTime = $(this).val();
+          var dateSection = new Date($('#event_day option:selected').val().replace("-", "/"));
+          $(this).val($('#event_day option:selected').val() + " " + pickedTime);
+      }) */
+
+  })
+
+</script>
+
 <% end %>
 
 
 <%= link_to 'Back', @stage %>
+

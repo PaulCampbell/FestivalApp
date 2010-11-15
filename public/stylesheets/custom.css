@@ -96,7 +96,16 @@ label.error { background-color:white; padding:5px 0 20px 0;}
 
 .smalltextarea { height:100px; }
 
-/* Super awsome buttons */
+
+.lineUp{ float:left; width:33%; margin:0 2px;}
+.lineUp ul {margin:0; padding:0; list-style:none;}
+.lineUp li {margin:0; padding:2px; list-style:none;}
+.lineUp h3 {color:#131313; padding:0 0 4px 0; margin:0;}
+
+.listings { clear:both;}
+
+
+/* Super awesome buttons */
 
 .awesome, .awesome:visited {
 	background: #222 url(/images/alert-overlay.png) repeat-x; 
@@ -147,3 +156,6 @@ label.error { background-color:white; padding:5px 0 20px 0;}
 .ui-timepicker-div .ui_tpicker_minute div { padding-right: 6px; }
 .ui-timepicker-div .ui_tpicker_second div { padding-right: 6px; }
 .ui-timepicker-div td { font-size: 90%; }
+
+
+.timePicker { width:200px !important;}

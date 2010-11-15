@@ -14,7 +14,9 @@ class StagesController < ApplicationController
   # GET /stages/1
   # GET /stages/1.xml
   def show
-    @stage = Stage.find(params[:id] )
+    @stage = Stage.find(params[:id] , :include => :events)
+
+    @title = @stage.festival.name + " | " + @stage.name
 
     respond_to do |format|
       format.html # show.html.erb

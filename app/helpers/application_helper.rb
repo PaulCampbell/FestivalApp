@@ -21,9 +21,20 @@ module ApplicationHelper
   		iso_date = date.strftime("%Y-%m-%d")
     end
 
+    def format_iso_datetime(date)
+  		iso_date = date.strftime("%Y-%m-%d %H:%M")
+    end
+
     def format_date_to_day_with_day_number(date)
       readable_date = date.strftime("%A %m-%d")
     end
-  
+
+    def format_date_full(date)
+      date_full = date.strftime("%A %m/%d/%Y")
+    end
+
+    def format_time(date)
+  		iso_date = date.strftime("%H:%M")
+    end
   
 end
